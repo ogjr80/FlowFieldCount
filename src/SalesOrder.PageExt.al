@@ -5,10 +5,10 @@ pageextension 50108 "Sales Order Ext" extends "Sales Order"
         // Add changes to page layout here
         addafter(Status)
         {
-            field("No of SO Lines"; Rec."No of SO Lines")
-            {
-                ApplicationArea = All;
-            }
+            // field("No of SO Lines"; Rec."No of SO Lines")
+            // {
+            //     ApplicationArea = All;
+            // }
             field("Total Unit Price"; Rec."Total Unit Price")
             {
                 ApplicationArea = All;
@@ -28,6 +28,14 @@ pageextension 50108 "Sales Order Ext" extends "Sales Order"
 
         }
     }
+
+    trigger OnOpenPage()
+    begin
+        rec.CalcFields("No of SO Lines");
+        Message(Rec.FieldName("No of SO Lines") + ' ' + format(Rec."No of SO Lines"));
+    end;
+
+
 
 
 }
